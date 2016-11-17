@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:07:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2016/11/16 11:42:52 by aanzieu          ###   ########.fr       */
+/*   Updated: 2016/11/17 18:55:27 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 int					ft_memcmp(const void *str1, const void *str2, size_t n);
 
+/* Get_Next_Line */
+
+# define BUFF_SIZE 32
+# define MAX_FD 256
+
+int		get_next_line(const int fd, char **line);
+
 /* List */
 
 typedef struct		s_list
@@ -92,11 +99,5 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 
-/* Get_Next_Line */
-
-# define BUFF_SIZE 32
-# define MAX_FD 256
-
-int		get_next_line(const int fd, char *line);
 
 #endif

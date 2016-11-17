@@ -71,14 +71,17 @@ FT_LIBFT = ft_atoi.c \
 all : $(NAME)
 
 $(NAME):
-	$(CC) -c $(FLG) $(FT_LIBFT) $(INCLUDE)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@$(CC) -c $(FLG) $(FT_LIBFT) $(INCLUDE)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
+	@echo "LIBFT DONE"
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
+	@echo "clean done"
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@echo "fclean done"
 
 re: fclean all
