@@ -134,7 +134,6 @@ t_map		*fdf_read(t_env *env, char *argv)
 	}
 	map->len = nbline;
 	close(env->fd);
-	write(1, "erreur ici", 11);
 	return(map);
 }
 
