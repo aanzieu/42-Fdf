@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/08 12:04:33 by adespond          #+#    #+#             */
-/*   Updated: 2016/03/08 12:04:35 by adespond         ###   ########.fr       */
+/*   Created: 2017/02/20 14:09:26 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/02/20 16:22:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/fdf.h"
 
 void	new_point(int x, int y, double z, t_env *e)
 {
 	t_m3	*p;
-	t_m3	*next;
+	t_m3	*goy;
 
 	p = new_m3(x, y, z, 0);
-	next = e->p;
-	if (next == NULL)
+	goy = e->p;
+	if (goy == NULL)
 	{
 		e->p = p;
 		return ;
 	}
-	while (next->next != NULL)
-		next = next->next;
-	next->next = p;
+	while (goy->next != NULL)
+		goy = goy->next;
+	goy->next = p;
 }
 
 void	end_point(t_env *e)

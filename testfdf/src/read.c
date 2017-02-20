@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/27 10:12:16 by adespond          #+#    #+#             */
-/*   Updated: 2016/03/08 17:52:55 by adespond         ###   ########.fr       */
+/*   Created: 2017/02/20 14:10:03 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/02/20 17:37:56 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/fdf.h"
 
@@ -36,18 +37,6 @@ void	read_point(char **line, t_env *e, int *x, int y)
 	(*line)++;
 }
 
-int		open_file(t_env *e, char *file)
-{
-	int		fd;
-
-	fd = open(file, O_DIRECTORY);
-	if (fd >= 0)
-		return (0);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	return (read_file(fd, e));
-}
 
 int		read_file(int fd, t_env *e)
 {
@@ -76,4 +65,18 @@ int		read_file(int fd, t_env *e)
 	e->max_x = -x;
 	e->max_y = -y;
 	return (1);
+}
+
+int		open_file(t_env *e, char *file)
+
+{
+	int		fd;
+
+	fd = open(file, O_DIRECTORY);
+	if (fd >= 0)
+		return (0);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	return (read_file(fd, e));
 }
