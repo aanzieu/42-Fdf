@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:04:15 by aanzieu           #+#    #+#             */
-/*   Updated: 2016/03/10 21:34:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/01 10:26:30 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_bzero(void *dest, size_t n)
 {
-	ft_memset(dest, '\0', n);
+	ft_memset(dest, 0, n);
 }

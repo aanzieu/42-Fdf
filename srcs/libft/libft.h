@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:07:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/02/20 18:13:30 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/02/27 13:37:37 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-/* Libft str */
+/*
+* Libft str
+*/
 
 char				*ft_strdup(const char *str);
 char				*ft_strcpy(char *dest, const char *src);
@@ -55,6 +57,7 @@ size_t				ft_strlcat(char *dest, const char *src, size_t size);
 int					ft_strcmp(const char *str1, const char *str2);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);
 int					ft_atoi(char const *nptr);
+void				ft_swap_str(char **s1, char **s2);
 void				ft_strdel(char **ap);
 void				ft_strclr(char *s);
 void				ft_striter(char *s, void (*f)(char *));
@@ -64,7 +67,9 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 
-/* Memory */
+/*
+* Memory
+*/
 
 void				*ft_memset(void *dest, int c, size_t n);
 void				ft_bzero(void *dest, size_t n);
@@ -76,14 +81,25 @@ void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
 int					ft_memcmp(const void *str1, const void *str2, size_t n);
 
-/* Get_Next_Line */
+/*
+* Get_Next_Line
+*/
 
-# define BUFF_SIZE 32
-# define MAX_FD 256
+# define BUFF_SIZE 42
+
+typedef struct		s_gnl
+{
+	char			*str;
+	int				fd;
+	struct s_gnl	*next;
+	struct s_gnl	*prw;
+}					t_gnl;
 
 int		get_next_line(const int fd, char **line);
 
-/* List */
+/*
+* List
+*/
 
 typedef struct		s_list
 {
@@ -98,6 +114,5 @@ void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-
 
 #endif

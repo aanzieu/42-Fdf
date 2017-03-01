@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:06:38 by aanzieu           #+#    #+#             */
-/*   Updated: 2016/03/13 16:45:03 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/02/27 17:12:42 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		*ft_dup(char const *s, char c)
 	len = 0;
 	while (s[len] != c && s[len])
 		len++;
-	if (!(word = (char*)malloc(sizeof(char) * len + 1)))
+	if (!(word = (char*)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
 	while (i < len)
@@ -62,7 +62,7 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	i = -1;
 	len = ft_word(s, c);
-	if (!(tab = (char**)malloc(sizeof(char*) * len + 1)))
+	if (!(tab = (char**)ft_memalloc(sizeof(char*) * (len + 1))))
 		return (NULL);
 	while (*s)
 	{

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:04:41 by aanzieu           #+#    #+#             */
-/*   Updated: 2016/11/15 09:14:15 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/01 10:28:01 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	*ft_memalloc(size_t size)
 {
 	void	*alloc;
 
-	if ((alloc = (void*)malloc(size)) == NULL)
+	alloc = malloc(size);
+	if (alloc == NULL)
 		return (NULL);
 	ft_bzero(alloc, size);
-	return ((void*)alloc);
+	return (alloc);
 }

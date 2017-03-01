@@ -1,14 +1,6 @@
 NAME = libft.a
 
-CC = gcc
-
-FLG = -Wextra -Wall -Werror
-
-OBJS = $(FT_LIBFT:.c=.o)
-
-INCLUDE = libft.h
-
-FT_LIBFT = ft_atoi.c \
+SRC = ft_atoi.c \
 	   ft_bzero.c \
 	   ft_isalnum.c \
 	   ft_isalpha.c \
@@ -32,6 +24,7 @@ FT_LIBFT = ft_atoi.c \
 	   ft_putnbr_fd.c \
 	   ft_putstr.c \
 	   ft_putstr_fd.c \
+	   ft_swap_str.c \
 	   ft_strcat.c \
 	   ft_strchr.c \
 	   ft_strclr.c \
@@ -68,20 +61,30 @@ FT_LIBFT = ft_atoi.c \
 	   ft_lstnew.c \
 	   get_next_line.c \
 
-all : $(NAME)
+OBJ = $(SRC:.c=.o)
 
-$(NAME):
-	@$(CC) -c $(FLG) $(FT_LIBFT) $(INCLUDE)
-	@ar rc $(NAME) $(OBJS)
+.SILENT:
+
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "LIBFT DONE"
+	printf '\033[4m'
+	printf '\033[32m[✔] %s\n\033[0m' "Libft Done"
 
+%.o : %.c
+	gcc -Wall -Wextra -Werror -I. -c $<
+	printf '\033[0m[✔] %s\n\033[0m' "$<"
+	
 clean:
-	@rm -rf $(OBJS)
-	@echo "clean done"
+	/bin/rm -rf *.o
+	printf '\033[31m[✔] %s\n\033[0m' "Clean Libft"
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "fclean done"
+	/bin/rm -f $(NAME)
+	printf '\033[31m[✔] %s\n\033[0m' "Fclean Libft"
 
 re: fclean all
+
+all: $(NAME)
+
+.PHONY: clean fclean re all

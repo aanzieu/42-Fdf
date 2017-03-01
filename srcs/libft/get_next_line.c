@@ -5,23 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 15:36:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2016/11/17 18:54:23 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/02/21 19:25:50 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/03/01 14:01:37 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		last_line(char **str, char **line)
+static int		find_bckslach(char *str, int i)
 {
-	if (!(*line = ft_strdup(*str)))
+	if (!(*str))
 		return (-1);
-	free(*str);
-	*str = ft_strnew(0);
-	return (1);
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (-1);
 }
 
-int		one_line(char **str, char **line, int size)
+static int		one_line(char **str, char **line, int size)
 {
 	char	*tmp;
 
@@ -35,23 +39,36 @@ int		one_line(char **str, char **line, int size)
 	return (1);
 }
 
-int		backslach(char *str)
+static t_gnl	*find_list(t_gnl *list, t_gnl *new, int fd)
 {
-	int	x;
+	t_gnl	*tmp;
 
-	if (!(*str))
-		return (-1);
-	x = 0;
-	while (str[x])
+	if (!list)
 	{
-		if (str[x] == '\n')
-			return (x);
-		x++;
+		if (!(list = (t_gnl*)malloc(sizeof(t_gnl))))
+			return (NULL);
+		list->fd = fd;
+		list->str = ft_strdup("");
+		list->next = NULL;
+		list->prw = list;
 	}
-	return (-1);
+	list = list->prw;
+	tmp = list;
+	while (list->fd != fd && list->next)
+		list = list->next;
+	if (fd == list->fd)
+		return (list);
+	if (!(new = malloc(sizeof(t_gnl))))
+		return (NULL);
+	new->fd = fd;
+	new->str = ft_strdup("");
+	new->next = NULL;
+	new->prw = tmp;
+	list->next = new;
+	return (new);
 }
 
-int		read_line(int fd, char **str, char **line, int size)
+static int		read_line(int fd, char **str, char **line, int size)
 {
 	int		ret;
 	char	*tmp;
@@ -66,29 +83,34 @@ int		read_line(int fd, char **str, char **line, int size)
 		*str = ft_strjoin(tmp, buf);
 		free(tmp);
 		tmp = NULL;
-		if ((size = backslach(*str)) > -1)
+		if ((size = find_bckslach(*str, 0)) > -1)
 			return (one_line(str, line, size));
 	}
 	return (-42);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	int				size;
+	static t_gnl	*list = NULL;
+	t_gnl			*new;
+	char			*tmp;
+	int				end;
 	int				ret;
-	static char		*str[MAX_FD];
 
-	size = 0;
-	if (fd < 0 || fd >= MAX_FD || line == NULL || BUFF_SIZE < 1)
+	end = 0;
+	if (fd < 0 || line == NULL || BUFF_SIZE < 1)
 		return (-1);
-	if (str[fd] == NULL)
-		str[fd] = (char*)ft_memalloc(size + 1);
-	if ((size = backslach(str[fd])) > -1)
-		return (one_line(&str[fd], line, size));
-	if ((ret = read_line(fd, &str[fd], line, size)) != -42)
+	new = NULL;
+	list = find_list(list, new, fd);
+	if ((end = find_bckslach(list->str, 0)) > -1)
+		return (one_line(&list->str, line, end));
+	if ((ret = read_line(fd, &list->str, line, end)) != -42)
 		return (ret);
-	if (ft_strlen(str[fd]) && str[fd] && backslach(str[fd]) == -1)
-		return (last_line(&str[fd], line));
-	ft_strclr(str[fd]);
-	return (0);
+	ret = (list->str[0] != '\0') ? 1 : 0;
+	ft_swap_str(&list->str, &tmp);
+	end = find_bckslach(tmp, 0) == -1 ? ft_strlen(tmp) : find_bckslach(tmp, 0);
+	*line = ft_strsub(tmp, 0, end);
+	list->str = ft_strsub(tmp, end + 1, ft_strlen(tmp));
+	free(tmp);
+	return (ret);
 }
