@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:07:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/02/27 13:37:37 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/03 10:11:35 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 /*
-* Libft str
+** Libft str
 */
 
 char				*ft_strdup(const char *str);
@@ -68,7 +68,7 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 
 /*
-* Memory
+** Memory
 */
 
 void				*ft_memset(void *dest, int c, size_t n);
@@ -82,7 +82,7 @@ void				ft_memdel(void **ap);
 int					ft_memcmp(const void *str1, const void *str2, size_t n);
 
 /*
-* Get_Next_Line
+** Get_Next_Line
 */
 
 # define BUFF_SIZE 42
@@ -95,10 +95,10 @@ typedef struct		s_gnl
 	struct s_gnl	*prw;
 }					t_gnl;
 
-int		get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 
 /*
-* List
+** List
 */
 
 typedef struct		s_list

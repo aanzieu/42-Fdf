@@ -1,23 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   fdf_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 20:05:50 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:10:22 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/03/03 09:50:10 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/03/03 09:50:28 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include//fdf.h"
 
-char	*ft_strdup(const char *str)
+void	axe_x(t_env *e)
 {
-	char	*temp;
+	e->rotation = AXE_X;
+	fdf_del(e);
+}
 
-	if ((temp = (char*)malloc((ft_strlen(str) + 1))) == NULL)
-		return (NULL);
-	ft_strcpy(temp, str);
-	return (temp);
+void	axe_y(t_env *e)
+{
+	e->rotation = AXE_Y;
+	fdf_del(e);
+}
+
+void	axe_z(t_env *e)
+{
+	e->rotation = AXE_Z;
+	fdf_del(e);
+}
+
+void	move_up(t_env *e)
+{
+	e->ud -= 10;
+	fdf_del(e);
+}
+
+void	move_down(t_env *e)
+{
+	e->ud += 10;
+	fdf_del(e);
 }

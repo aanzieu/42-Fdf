@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 08:51:13 by aanzieu           #+#    #+#              #
-#    Updated: 2017/03/01 15:11:04 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/03/02 17:45:52 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,19 @@ NAME	= fdf
 FLGS	= -Wall -Wextra -Werror
 
 SRC		= srcs/fdf.c \
+		  srcs/fdf_calc.c \
+		  srcs/fdf_sphere.c \
+		  srcs/fdf_colors.c \
+		  srcs/fdf_del.c \
 		  srcs/fdf_draw.c \
+		  srcs/fdf_error.c \
 		  srcs/fdf_hook.c \
 		  srcs/fdf_init.c \
-		  srcs/fdf_utils.c \
+		  srcs/fdf_move.c \
+		  srcs/fdf_projection.c \
 		  srcs/fdf_read.c \
-		  srcs/fdf_calcul.c \
-		  srcs/fdf_error.c \
-		  srcs/fdf_del.c \
+		  srcs/fdf_rotate.c \
+		  srcs/fdf_utils.c \
 
 OBJ		= $(patsubst src/%.c,obj/%.o,$(SRC))
 .SILENT:

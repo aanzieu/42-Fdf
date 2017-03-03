@@ -1,39 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_del.c                                          :+:      :+:    :+:   */
+/*   fdf_projection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/28 16:14:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 08:53:26 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/03/02 12:39:39 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/03/03 09:49:44 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-t_image	*del_image(t_env *e, t_image *img)
+void	para_projection(t_env *e)
 {
-	if (img != NULL)
-	{
-		if (img->img != NULL)
-			mlx_destroy_image(e->mlx, img->img);
-		ft_memdel((void **)&img);
-	}
-	return (NULL);
+	e->opt = PARA;
+	fdf_del(e);
 }
 
-t_env	*fdf_mlx_del(t_env *e)
+void	ortho_projection(t_env *e)
 {
-	if (e->win != NULL)
-		mlx_destroy_window(e->mlx, e->win);
-	if (e->image != NULL)
-		del_image(e, e->image);
-	return (NULL);
+	e->opt = ORTHO;
+	fdf_del(e);
 }
 
-void	fdf_del(t_env *e)
+void	spher_projection(t_env *e)
 {
-	ft_bzero(e->image->img_s, WIN_HEIGTH * WIN_WIDTH * e->image->bpp);
-	expose_hook(e);
+	e->opt = SPHERE;
+	fdf_del(e);
+}
+
+void	isometric_projection(t_env *e)
+{
+	e->opt = ISO;
+	fdf_del(e);
+}
+
+void	origin_projection(t_env *e)
+{
+	e->fovy = 0;
+	e->near = 5;
+	e->far = 5;
+	e->ud = 1;
+	e->lr = 1;
+	e->opt = ISO;
+	fdf_del(e);
 }

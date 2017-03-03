@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   fdf_move.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/10 20:05:50 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:10:22 by aanzieu          ###   ########.fr       */
+/*   Created: 2017/03/02 16:30:29 by aanzieu           #+#    #+#             */
+/*   Updated: 2017/03/03 09:48:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/fdf.h"
 
-char	*ft_strdup(const char *str)
+void	move_left(t_env *e)
 {
-	char	*temp;
+	e->lr -= 10;
+	fdf_del(e);
+}
 
-	if ((temp = (char*)malloc((ft_strlen(str) + 1))) == NULL)
-		return (NULL);
-	ft_strcpy(temp, str);
-	return (temp);
+void	move_right(t_env *e)
+{
+	e->lr += 10;
+	fdf_del(e);
+}
+
+void	rotate_left(t_env *e)
+{
+	e->fovy += 0.05;
+	fdf_del(e);
+}
+
+void	rotate_right(t_env *e)
+{
+	e->fovy -= 0.05;
+	fdf_del(e);
 }
