@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:25:08 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:45:03 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/03 10:50:34 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ void	cleanup(char **str)
 void	fdf_read_error(t_env *e, char **tmp)
 {
 	ft_putstr_fd("Wrong map\n", 2);
-	fdf_del_point(e);
 	cleanup(tmp);
 	ft_memdel((void**)tmp);
-	ft_memdel((void**)(e->map));
-	ft_memdel((void**)e);
+	fdf_mlx_del(e);
 	exit(1);
 }
 
