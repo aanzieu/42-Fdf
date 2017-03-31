@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 08:25:55 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:53:27 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/13 10:24:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int		search_error(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] == '-')
+	while (str && str[i] == '-')
 		i++;
-	while (str && str[i])
+	while (str && str[i] && str[i] != ',')
 	{
 		if (!ft_isdigit(str[i]))
 			return (0);

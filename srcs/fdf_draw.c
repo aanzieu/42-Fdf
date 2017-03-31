@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 18:27:52 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:44:04 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/21 16:25:36 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ static t_br		*algo_bresenham(t_env *e, t_point *a, t_point *b)
 static void		draw_p(t_env *e, int x, int y, int color)
 {
 	if (e->method == IMG)
+	{
 		ft_memcpy(&e->image->img_s[(x * 4) + (y * e->image->s_l)], &(color),
 				(size_t)(sizeof(int)));
+	}
 	if (e->method == DRAW)
 	{
 		mlx_pixel_put(e->mlx, e->win, x, y, 0x00FFFFFF);
@@ -50,7 +52,7 @@ static void		draw_line(t_env *e, t_point *a, t_point *b, int err)
 	while (1)
 	{
 		if (check_point(e, x, y))
-			draw_p(e, x + e->lr, y + e->ud, conv_c(get_c(e, (double)a->z)));
+			draw_p(e, x + e->lr, y + e->ud, conv_c(get_c(e, a, (double)a->z)));
 		if (x == b->dx && y == b->dy)
 			break ;
 		if ((err = bres->d_err) > -(bres->dx))

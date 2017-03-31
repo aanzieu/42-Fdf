@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:25:08 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 10:50:34 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/13 11:40:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ void	fdf_del_point(t_env *e)
 
 void	cleanup(char **str)
 {
-	while (*str)
+	int		i;
+
+	i = 0;
+	while (str[i])
 	{
-		free(*str);
-		*str = NULL;
-		str++;
+		free(str[i]);
+		str[i] = NULL;
+		i++;
 	}
 }
 

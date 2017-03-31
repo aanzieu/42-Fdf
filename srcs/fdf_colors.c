@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 08:44:39 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:42:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/13 11:37:31 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,28 @@ t_color			*init_color(int r, int g, int b)
 	return (color);
 }
 
-t_color			*get_c(t_env *e, double z)
+t_color			*get_c(t_env *e, t_point *a, double z)
 {
 	double		r;
 	double		g;
 	double		b;
 
+	if (a->col == 1)
+	{
+		r = (a->color >> 16) & 0xFF;
+		g = (a->color >> 8) & 0xFF;
+		b = a->color & 0xFF;
+		return (init_color(r, g, b));
+	}
 	if (e->min_z < 0)
 		z = z + -e->min_z;
 	if (e->min_z == 0 && e->max_z == 0)
-		return (init_color(254, 254, 254));
-	r = ((((double)e->color_min->r - e->color_max->r) / ft_abs(e->min_z -
-					e->max_z)) * z) + e->color_max->r;
-	g = ((((double)e->color_min->g - e->color_max->g) / ft_abs(e->min_z -
-					e->max_z)) * z) + e->color_max->g;
-	b = ((((double)e->color_min->b - e->color_max->b) / ft_abs(e->min_z -
-					e->max_z)) * z) + e->color_max->b;
+		return (init_color(255, 255, 255));
+	r = ((((double)e->color_min->r - e->color_max->r)
+				/ ft_abs(e->min_z - e->max_z)) * z) + e->color_max->r;
+	g = ((((double)e->color_min->g - e->color_max->g) /
+				ft_abs(e->min_z - e->max_z)) * z) + e->color_max->g;
+	b = ((((double)e->color_min->b - e->color_max->b) /
+				ft_abs(e->min_z - e->max_z)) * z) + e->color_max->b;
 	return (init_color(r, g, b));
 }

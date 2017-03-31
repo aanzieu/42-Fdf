@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 17:44:31 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/02 17:55:59 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/21 13:43:29 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void	calcul_new_point(t_env *e, t_point *p)
 
 	if (!(rot = (t_rot *)ft_memalloc(sizeof(t_rot))))
 		fdf_malloc_error(e);
-	rot->rx = p->x * e->far;
-	rot->ry = p->y * e->far;
-	rot->rz = p->z * (e->near * 0.09);
-	if (e->rotation == AXE_Z)
-		rotation_z(e, rot);
+	rot->rx = (p->x - (e->max_w / 2)) * e->far;
+	rot->ry = (p->y - (e->max_h / 2)) * e->far;
+	rot->rz = p->z * (e->near * 0.02);
+	if (e->rotation == AXE_X)
+		rotation_x(e, rot);
 	else if (e->rotation == AXE_Y)
 		rotation_y(e, rot);
 	else
-		rotation_x(e, rot);
+		rotation_z(e, rot);
 	if (e->opt == PARA)
 		para_proj(p, rot);
 	if (e->opt == ISO)

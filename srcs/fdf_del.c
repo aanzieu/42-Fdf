@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 16:14:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 08:53:26 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/13 11:38:45 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void	fdf_del(t_env *e)
 {
 	ft_bzero(e->image->img_s, WIN_HEIGTH * WIN_WIDTH * e->image->bpp);
 	expose_hook(e);
+}
+
+void	fdf_too_many_arg(int argc)
+{
+	if (argc < 2)
+	{
+		ft_putstr_fd("No <filename>\n", 2);
+		exit(0);
+	}
+	if (argc >= 4)
+	{
+		ft_putstr_fd("Too many arg\n", 2);
+		exit(0);
+	}
 }

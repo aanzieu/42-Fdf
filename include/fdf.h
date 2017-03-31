@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 09:39:35 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:58:18 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/21 13:37:10 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@
 
 # define WIN_WIDTH	1920
 # define WIN_HEIGTH	1080
-# define AXE_X		0
+# define AXE_X		2
 # define AXE_Y		1
-# define AXE_Z		2
+# define AXE_Z		0
 # define ISO		0
 # define PARA		1
 # define ORTHO		2
 # define SPHERE		3
 # define IMG		1
 # define DRAW		2
+
+# define HEXA		"0123456789ABCDEF"
+# define DEC		"0123456789"
 
 /*
 ** Structure point
@@ -44,6 +47,8 @@ typedef struct		s_point
 	int				z;
 	int				dx;
 	int				dy;
+	int				color;
+	int				col;
 }					t_point;
 
 /*
@@ -180,6 +185,7 @@ void				cleanup(char **str);
 void				fdf_fd_error(t_env *e, int fd);
 void				fdf_malloc_error(t_env *e);
 void				fdf_read_error(t_env *e, char **tmp);
+void				fdf_too_many_arg(int argc);
 
 /*
 ** Hook_FDF
@@ -194,7 +200,7 @@ int					key_hook(int	button, t_env *e);
 
 int					set_color(char *s, t_env *e);
 unsigned int		conv_c(t_color *color);
-t_color				*get_c(t_env *e, double z);
+t_color				*get_c(t_env *e, t_point *a, double z);
 t_color				*init_color(int r, int g, int b);
 
 /*

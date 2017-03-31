@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 20:07:16 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 10:11:35 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/06 08:49:22 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int					ft_isalnum(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
 char				*ft_strnew(size_t size);
 char				*ft_itoa(int n);
 void				ft_putchar(char c);

@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 09:51:20 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 09:52:24 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/21 13:43:28 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	para_proj(t_point *p, t_rot *rot)
 
 void	iso_proj(t_point *p, t_rot *rot)
 {
-	p->dx = (rot->px - rot->py) + WIN_WIDTH * 0.5;
-	p->dy = (-rot->pz + rot->px * 0.5 + rot->py * 0.5) + WIN_HEIGTH * 0.5;
+	p->dx = (rot->px - rot->py) + (WIN_WIDTH * 0.5);
+	p->dy = (-rot->pz + rot->px * 0.5 + rot->py * 0.5) + (WIN_HEIGTH * 0.5);
 }
 
 void	ortho_proj(t_point *p, t_rot *rot)

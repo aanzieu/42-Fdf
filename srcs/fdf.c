@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 09:38:00 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/03 10:53:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/21 16:28:15 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int		expose_hook(t_env *e)
 {
+	if (e->method == DRAW)
+		mlx_clear_window(e->mlx, e->win);
 	calcul_point(e);
 	draw_map(e);
 	if (e->method == IMG)
@@ -25,11 +27,8 @@ int		main(int argc, char **argv)
 {
 	t_env	*e;
 
-	if (argc < 2)
-	{
-		ft_putstr_fd("No <filename>\n", 2);
-		return (0);
-	}
+	if (argc < 2 || argc >= 4)
+		fdf_too_many_arg(argc);
 	if (argc == 2)
 		e = init_env(argv[1]);
 	if (argc == 3)

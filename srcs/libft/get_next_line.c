@@ -6,7 +6,7 @@
 /*   By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 19:25:50 by aanzieu           #+#    #+#             */
-/*   Updated: 2017/03/01 14:01:37 by aanzieu          ###   ########.fr       */
+/*   Updated: 2017/03/06 17:23:19 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int				get_next_line(const int fd, char **line)
 	int				ret;
 
 	end = 0;
-	if (fd < 0 || line == NULL || BUFF_SIZE < 1)
-		return (-1);
 	new = NULL;
+	if (fd < 0 || !line || BUFF_SIZE < 1 || fd == 1)
+		return (-1);
 	list = find_list(list, new, fd);
 	if ((end = find_bckslach(list->str, 0)) > -1)
 		return (one_line(&list->str, line, end));

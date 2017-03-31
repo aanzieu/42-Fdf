@@ -6,7 +6,7 @@
 #    By: aanzieu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 08:51:13 by aanzieu           #+#    #+#              #
-#    Updated: 2017/03/02 17:45:52 by aanzieu          ###   ########.fr        #
+#    Updated: 2017/03/13 11:48:54 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,28 +36,30 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C srcs/libft/ 
+	make -C minilibx_macos/ 
 	gcc $(FLGS) -o $(NAME) $(SRC) -I ./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit -L ./minilibx_macos/ -L ./srcs/libft/ -lft 
-	printf '\033[32m[✔] %s\n\033[0m' "Create FdF"
+	echo '\033[32m[✔] %s\n\033[0m' "Create FdF"
 
 obj/%.o: src/%.c
 	mkdir -p obj
 	gcc -Wall -Wextra -Werror -c $< -o $@
-	printf '\033[0m[✔] %s\n\033[0m' "$<"
+	echo '\033[0m[✔] %s\n\033[0m' "$<"
 
 clean:
 	/bin/rm -rf obj/
 	make -C srcs/libft/ clean
-	printf '\033[31m[✔] %s\n\033[0m' "Clean Libft"
+	make -C minilibx_macos/ clean
+	echo '\033[31m[✔] %s\n\033[0m' "Clean Libft"
 
 fclean: clean
 	/bin/rm -f $(NAME)
 	make -C srcs/libft/ fclean
-	printf '\033[31m[✔] %s\n\033[0m' "Fclean Libft"
+	echo '\033[31m[✔] %s\n\033[0m' "Fclean Libft"
 
 re: fclean all
 
 test: re
-	printf '\033[32m%s\n\033[0m' "-------------------------------------"
+	echo '\033[32m%s\n\033[0m' "-------------------------------------"
 	./fdf
 
 all: $(NAME)
